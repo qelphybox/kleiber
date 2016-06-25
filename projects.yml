@@ -1,12 +1,12 @@
 ---
 - name: mfc
   prefix: MFC
-  path: asdf
+  path: ~/projects/mfc
 
-- name: cabinet
-  prefix: CAB
-  path: asdf
+# - name: cabinet
+#   prefix: CAB
+#   path: asdf
 
-- name: control-center
-  prefix: KURS
-  path: asdf
+# - name: control-center
+#   prefix: KURS
+#   path: asdf

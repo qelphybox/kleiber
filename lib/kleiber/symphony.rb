@@ -4,7 +4,6 @@ require 'yaml'
 require 'json'
 require_relative 'project'
 
-
 module Kleiber
   class Symphony
     def initialize(command, args = {})
