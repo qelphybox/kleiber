@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-require 'kleiber'
+require 'kleiber/cli'
 
-vagrant_command = ARGV.first || 'up'
-Kleiber::Runner.new(vagrant_command).run(ARGV[1..-1])
+Kleiber::CLI.start(ARGV)
+# vagrant_command = ARGV.first || 'up'
+# Kleiber::Runner.new(vagrant_command).run(ARGV[1..-1])
