@@ -7,7 +7,7 @@ module Kleiber
     class << self
       def load_by_config(config)
         projects = Config.parse_config(config)
-        puts projects
+        p projects
         # project_configs.each { |c| new(c) }
       end
     end

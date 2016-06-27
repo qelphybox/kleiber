@@ -1,7 +1,7 @@
 ---
 - name: mfc
   prefix: MFC
-  path: ~/projects/mfc
+  path: /home/kirill_bobykin/projects/mfc
 
 # - name: cabinet
 #   prefix: CAB

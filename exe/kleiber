@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
+require 'kleiber'
 require 'kleiber/cli'
 
 Kleiber::CLI.start(ARGV)
