@@ -6,7 +6,7 @@ require 'kleiber/version'
 Gem::Specification.new do |spec|
   spec.name          = 'kleiber'
   spec.version       = Kleiber::VERSION
-  spec.authors       = ['kirill_bobykin']
+  spec.authors       = ['Kirill Bobykin']
   spec.email         = ['qelphybox@gmail.com']
 
   spec.summary       = 'Manage your development enviroments faster!'
@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.12'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
+  spec.add_development_dependency 'fakefs', '~> 0.8.1'
 
   spec.add_dependency 'thor'
 end
