@@ -1,0 +1,12 @@
+---
+- name: proj1
+  prefix: PROJ1
+  path: /projects/proj1
+
+- name: proj2
+  prefix: PROJ2
+  path: /projects/proj2
+
+- name: proj3
+  prefix: PROJ3
+  path: /projects/proj3
