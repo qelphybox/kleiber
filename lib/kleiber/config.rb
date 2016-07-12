@@ -45,8 +45,6 @@ module Kleiber
 
       private
 
-      # FIXME: horrible
-
       def load_configuration!
         if stored?
           @storage.apply_config!
@@ -59,10 +57,7 @@ module Kleiber
 
       def set_ports!
         FileUtils.chdir(@path)
-        cmd = <<-SHELL
-          unset RUBYLIB
-          /usr/bin/vagrant port
-        SHELL
+        cmd = ['unset RUBYLIB', '/usr/bin/vagrant port'].join("\n")
         ports = ''
         Thread.new { ports = `#{cmd}` }.join
         ports = ports.scan(/\s+(\d+)\s\(guest\)\s=>\s(\d+)\s\(host\)/).reject { |m| %w(22 2222).sort == m.sort }.first
@@ -73,11 +68,9 @@ module Kleiber
       def set_host!
         FileUtils.chdir(@path)
         ifconfig = ''
-        cmd = <<-SHELL
-          unset RUBYLIB
-          /usr/bin/vagrant up --no-provision &> /dev/null
-          /usr/bin/vagrant ssh -c 'ifconfig'
-        SHELL
+        cmd = ['unset RUBYLIB',
+               '/usr/bin/vagrant up --no-provision &> /dev/null',
+               "/usr/bin/vagrant ssh -c 'ifconfig'"].join("\n")
         Thread.new { ifconfig = `#{cmd}` }.join
         @host = parse_ifconfig(ifconfig).first.first
       end

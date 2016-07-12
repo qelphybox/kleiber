@@ -36,9 +36,5 @@ module Kleiber
     def provision(*projects)
       Symphony.new('provision', options: options, projects: projects) #.exec
     end
-
-    # def status(*projects)
-
-    # end
   end
 end
