@@ -5,6 +5,10 @@ module FakefsSpecHelper
     Kleiber::Project::Config.new(parsed_config)
   end
 
+  def clearfs
+    FileUtils.rm_rf('/')
+  end
+
   private
 
   def parsed_config
