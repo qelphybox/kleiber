@@ -1,0 +1,34 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: Add ruby apt repo
+      apt_repository:
+        repo: 'ppa:brightbox/ruby-ng'
+
+    - name: Install apt packages
+      apt:
+        name: '{{ item }}'
+        update_cache: yes
+      with_items:
+        - git
+        - vim
+        - mc
+        - ruby2.3
+        - ruby2.3-dev
+        - build-essential
+        - zlib1g-dev
+        - software-properties-common
+
+    - name: Install bundler
+      gem:
+        name: bundler
+        state: latest
+        user_install: no
+
+    - name: Add autofollow
+      lineinfile:
+        dest: "/home/vagrant/.bashrc"
+        regexp: "^cd /vagrant"
+        line: "cd /vagrant"
