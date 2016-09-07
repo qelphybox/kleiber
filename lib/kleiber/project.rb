@@ -3,25 +3,23 @@
 require_relative 'config'
 
 module Kleiber
+  # Project model describes project.
+  # One project is one vagrant machine.
+  # @author Bobykin Kirill <qelphybox@gmail.com>
   class Project
     class << self
+      # Loads projects by configuration file with projects parameters.
+      # @param config [String] path to cofiguration file
+      # @return [Array] Array of projects from config.
       def load_by_config(config)
         projects = Config.parse_config(config)
-        p projects
-        # project_configs.each { |c| new(c) }
+        projects.map { |c| new(c) }
       end
     end
 
     def initialize(args)
-      @name = args['name']
-      @path = args['path']
-      @prefix = args['path']
-      @host_port
-      @guest_port
-      @host
-
-      @env_vars
-      @aliases
+      @state = config
+      @config = config
     end
 
   end

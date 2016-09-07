@@ -5,6 +5,9 @@ require_relative 'config_storage'
 
 module Kleiber
   class Project
+    # Any vagrant machine has stable configuration.
+    # Configuration class provides objects with access to configuration.
+    # @author Bobykin Kirill <qelphybox@gmail.com>
     class Config
       class << self
         def parse_config(config_path)
