@@ -8,7 +8,6 @@ FIXTURES_PATH = "#{__dir__}/fixtures"
 
 RSpec.configure do |config|
   config.include FakeFS::SpecHelpers
-  config.include FakefsSpecHelper
 
   config.after(:each) do
     clearfs
