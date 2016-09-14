@@ -10,6 +10,9 @@ module Kleiber
     # @author Bobykin Kirill <qelphybox@gmail.com>
     class Config
       class << self
+        # Parse config by its path from variable KLEIBER CONFIG or CLI option -c
+        # @param config_path [String] configuration file path
+        # @return [Array] Array of configs
         def parse_config(config_path)
           config_path ||= ENV['KLEIBER_CONFIG']
           raise 'You have to define Kleiber projects ' \

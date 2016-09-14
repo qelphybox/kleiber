@@ -17,8 +17,8 @@ module Kleiber
       end
     end
 
-    def initialize(args)
-      @state = config
+    def initialize(config)
+      @state  = nil # TODO: solve state
       @config = config
     end
 
