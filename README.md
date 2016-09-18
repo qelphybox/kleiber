@@ -5,6 +5,11 @@ Manage your development enviroments faster!
 
 [Carlos Kleiber](https://en.wikipedia.org/wiki/Carlos_Kleiber) (3 July 1930 – 13 July 2004) was a German-born Austrian conductor who is widely regarded as being among the greatest conductors of the 20th century.
 
+## Description
+
+Kleiber provides an interface for control multiple vagrant machines. In case when you have distributed system of applications, each application have its vagrant machine and you need to manage system locally in development order Kleiber may be useful.
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -34,8 +39,8 @@ At first you need to compose projects config. It's `.yml` file with structure li
         host_port: 8000
         host: 125.12.123.42
         commands:
-        setup: 'npm install'
-        run: 'node start'
+          setup: 'npm install'
+          run: 'node start'
 
       project2:
         prefix: PROJ2
@@ -54,7 +59,7 @@ Sample command struture is `kleiber [vagrant command] <project names> <-c config
 
     $ kleiber up
     $ kleiber halt project1 project2
-    $ kleiber ssh -o bundle:server
+    $ kleiber ssh -o setup:run
     $ kleiber --help # use it first
 
 ## Development
