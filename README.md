@@ -1,9 +1,9 @@
 # Kleiber
 Manage your development enviroments faster!
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/kleiber`. To experiment with that code, run `bin/console` for an interactive prompt.
+![Carlos Kleiber](http://glasove.com/images/crops/32544_IAiSTZMEfO1QnQHfvwvghswY229lKS-560x315-trim%280,0,950,533%29.jpg)
 
-TODO: Delete this and the text above, and describe your gem
+[Carlos Kleiber](https://en.wikipedia.org/wiki/Carlos_Kleiber) (3 July 1930 – 13 July 2004) was a German-born Austrian conductor who is widely regarded as being among the greatest conductors of the 20th century.
 
 ## Installation
 
@@ -22,18 +22,51 @@ Or install it yourself as:
     $ gem install kleiber
 
 ## Usage
+### Projects config
+At first you need to compose projects config. It's `.yml` file with structure like that:
 
-TODO: Write usage instructions here
+    ---
+    projects:
+      project1:
+      prefix: PROJ1 # prefix for environment variables with project settings
+        dir: /path/to/project/dir
+        guest_port: 8000
+        host_port: 8000
+        host: 125.12.123.42
+        commands:
+        setup: 'npm install'
+        run: 'node start'
+
+      project2:
+        prefix: PROJ2
+
+      project3:
+        prefix: PROJ3
+
+    commands:
+      setup: 'bundle install --jobs 4'
+      run: 'bundle exec rails s -p %{guest_port}'
+      console: 'bundle exec rails c'
+You can create commands as many as you want and name it as you need.
+
+### Command Line Interface
+Sample command struture is `kleiber [vagrant command] <project names> <-c config_path> <-o commands divided by colon (:)>`.
+
+    $ kleiber up
+    $ kleiber halt project1 project2
+    $ kleiber ssh -o bundle:server
+    $ kleiber --help # use it first
 
 ## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Recommended to install [Vagrant](https://www.vagrantup.com/).
+`vagrant up && vagrant ssh` - switch on and get access to development vagrant machine.
+`bin/setup` - install dependecies and setup app.
+`bundle exec rspec` - to run tests.
+`bundle exec rake install` - install gem on your local machine.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/kleiber. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/qelphybox/kleiber. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
