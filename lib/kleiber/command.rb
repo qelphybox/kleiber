@@ -6,10 +6,17 @@ module Kleiber
   # Command in order to interact through CLI
   # @author Bobykin Kirill <qelphybox@gmail.com>
   class Command
-    def initialize(project, command, option = '')
+    attr_accessor :project, :symphony_command, :tasks
+      # Creates new instance
+      # @param project [Project] Project working for
+      # @param vagrant_command [String] vagrant command
+      # @param tasks = '' [String] tasks to execute
+      #
+      # @return [type] [description]
+    def initialize(project, vagrant_command, tasks = '')
       @project = project
-      @symphony_command = command
-      @option = option
+      @vagrant_command = vagrant_command
+      @tasks = tasks
       @command_parts = []
     end
 

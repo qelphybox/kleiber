@@ -11,7 +11,7 @@ module Kleiber
   # Looks like symphony of vagrants.
   # @author Bobykin Kirill <qelphybox@gmail.com>
   class Symphony
-    attr_accessor :option, :command, :projects
+    attr_accessor :tasks, :command, :projects
     # Creates new symphony
     # @!attribute command
     #   @return [Symbol] Vagrant command to perform
