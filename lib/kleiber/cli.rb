@@ -6,7 +6,7 @@ require_relative 'symphony'
 module Kleiber
   class CLI < Thor
     option :config, aliases: :c
-    option :option, aliases: :o
+    option :tasks, aliases: :t
 
     desc 'up', 'send vagrant up to machines'
     def up(*projects)
