@@ -34,9 +34,9 @@ module Kleiber
 
     # Perform created symphony
     def perform
-      Terminal.new
+      terminal = Terminal.define
       @projects.each do |project|
-        Command.new(project, @command, @tasks).execute
+        terminal.execute(Command.new(project, @command, @tasks))
       end
     end
   end
