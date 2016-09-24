@@ -1,0 +1,22 @@
+---
+projects:
+  project1:
+    prefix: PROJ1
+    dir: /path/to/project/dir
+    guest_port: 8000
+    host_port: 8000
+    host: 125.12.123.42
+    tasks:
+      setup: 'npm i'
+      run: 'node start'
+
+  project2:
+    prefix: PROJ2
+
+  project3:
+    prefix: PROJ3
+
+tasks:
+  setup: 'bundle install --jobs 4'
+  run: 'bundle exec rails s -p %{port}'
+  console: 'bundle exec rails c'
