@@ -2,7 +2,7 @@
   "exec" : "xfce4-terminal",
   "options" : {
     "new_tab" : "--tab",
-    "set_title" : "--title %{title}",
-    "exec_command" : "-e %{command}"
+    "set_title" : "--title '%{title}'",
+    "exec_command" : "-e '%{tab_command}'"
   }
 }
