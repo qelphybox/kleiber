@@ -11,19 +11,19 @@ module Kleiber
   # Looks like symphony of vagrants.
   # @author Bobykin Kirill <qelphybox@gmail.com>
   class Symphony
-    attr_accessor :option, :command, :projects
+    attr_accessor :tasks, :command, :projects
     # Creates new symphony
     # @!attribute command
     #   @return [Symbol] Vagrant command to perform
     # @!attribute args = {}
     #   @return [Hash] arguments for perfomance
-    # @option args [Hash] options
+    # @option args [Hash] tasks
     # @option args [Array] projects ([]) list of projects
     # @return [Symphony] instance of Symphony
-    def initialize(command, args = { options: {}, projects: [] })
+    def initialize(command, args = { tasks: {}, projects: [] })
       options = args[:options]
       projects_by_config = Project.load_by_config(options[:config])
-      @option = options[:option]
+      @tasks = options[:tasks]
       @command = command
       @projects = if args[:projects]
                     projects_by_config.select { |p| args[:projects].include?(p.name) }
@@ -34,8 +34,9 @@ module Kleiber
 
     # Perform created symphony
     def perform
+      terminal = Terminal.new
       @projects.each do |project|
-        Command.new(project, @command, @option).execute
+        terminal.execute(Command.new(project, @command, @tasks))
       end
     end
   end

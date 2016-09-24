@@ -38,7 +38,7 @@ At first you need to compose projects config. It's `.yml` file with structure li
         guest_port: 8000
         host_port: 8000
         host: 125.12.123.42
-        commands:
+        tasks:
           setup: 'npm install'
           run: 'node start'
 
@@ -48,18 +48,18 @@ At first you need to compose projects config. It's `.yml` file with structure li
       project3:
         prefix: PROJ3
 
-    commands:
+    tasks:
       setup: 'bundle install --jobs 4'
       run: 'bundle exec rails s -p %{guest_port}'
       console: 'bundle exec rails c'
-You can create commands as many as you want and name it as you need.
+You can create tasks as many as you want and name it as you need.
 
 ### Command Line Interface
-Sample command struture is `kleiber [vagrant command] <project names> <-c config_path> <-o commands divided by colon (:)>`.
+Sample command struture is `kleiber [vagrant command] <project names> <-c config_path> <-t tasks divided by colon (:)>`.
 
     $ kleiber up
     $ kleiber halt project1 project2
-    $ kleiber ssh -o setup:run
+    $ kleiber ssh -t setup:run
     $ kleiber --help # use it first
 
 ## Development
