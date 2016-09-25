@@ -15,7 +15,7 @@ RSpec.describe Symphony do
         let(:args) { { options: {}, projects: projects } }
         it { is_expected.to be_an_instance_of(Symphony) }
         it { is_expected.to have_attributes(command: :up,
-                                            option: nil,
+                                            tasks: nil,
                                             projects: []) }
       end
     end
