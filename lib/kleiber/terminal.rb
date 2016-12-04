@@ -20,10 +20,7 @@ module Kleiber
 
     def new_tab(command)
       comm = @terminal[:exec_command] % { tab_command: command }
-      "#{@terminal[:exec]} "\
-      "#{@terminal[:new_tab]} "\
-      "#{@terminal[:set_title]}} "\
-      "#{comm}"
+      [@terminal[:exec], @terminal[:new_tab], @terminal[:set_title], comm].join(' ')
     end
   end
 end
