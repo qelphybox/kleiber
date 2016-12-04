@@ -12,6 +12,18 @@ module Kleiber
         current_projects = Kleiber.projects.select { |p| project_names.include?(p.name) }
         new(name, current_projects)
       end
+
+      def get(id)
+
+      end
+
+      def list
+
+      end
+
+      def destroy(id)
+
+      end
     end
 
     def initialize(name, projects)

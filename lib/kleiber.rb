@@ -7,6 +7,7 @@ module Kleiber
   DEFAULT_SETTINGS_PATH = File.expand_path('.projects.yml', ENV['HOME'])
 
   autoload :Settings, 'kleiber/settings'
+  autoload :Store,    'kleiber/store'
   autoload :Symphony, 'kleiber/symphony'
   autoload :Project,  'kleiber/project'
 
