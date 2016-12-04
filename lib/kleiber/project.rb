@@ -21,6 +21,5 @@ module Kleiber
       @state  = nil # TODO: solve state
       @config = config
     end
-
   end
 end

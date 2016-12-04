@@ -37,12 +37,12 @@ module Kleiber
 
       STORAGE_PATH = "#{ROOT}/.kleiber"
 
-      def initialize(args)
+      def initialize(args, disable_load = false)
         @path = args['path']
         @name = args['name']
         @prefix = args['prefix']
         @storage = Storage.new(self)
-        load_configuration!
+        load_configuration! if disable_load
       end
 
       def stored?

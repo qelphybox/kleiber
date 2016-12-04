@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'kleiber/symphony'
+
 include Kleiber
 
 RSpec.describe Symphony do
@@ -14,9 +16,11 @@ RSpec.describe Symphony do
       context 'with right params' do
         let(:args) { { options: {}, projects: projects } }
         it { is_expected.to be_an_instance_of(Symphony) }
-        it { is_expected.to have_attributes(command: :up,
-                                            option: nil,
-                                            projects: []) }
+        it do
+          is_expected.to have_attributes(command: :up,
+                                         tasks: nil,
+                                         projects: [])
+        end
       end
     end
   end

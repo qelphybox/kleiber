@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require_relative 'terminal'
+require_relative 'project'
 
 module Kleiber
   # Command in order to interact through CLI
@@ -17,40 +18,43 @@ module Kleiber
 
     COMMANDS = Vagrant.constants.map { |c| Vagrant.const_get c }
 
-    attr_accessor :project, :symphony_command, :tasks
+    attr_accessor :project, :vagrant_command, :tasks
     # Creates new instance
     # @param project [Project] Project working for
-    # @param vagrant_command [String] vagrant command
+    # @param vagrant_command [Symbol] vagrant command
     # @param tasks = '' [String] tasks to execute
     # @return [Command]
     def initialize(project, vagrant_command, tasks = '')
       @project = project
       @vagrant_command = vagrant_command
-      @tasks = tasks
+      @tasks = tasks.split(':')
     end
 
-    def execute
-      `#{command_parts.join(' ')}`
+    def compose
+      command_parts.join(' && ')
     end
 
     private
 
+    # Reader for command_parts
+    # @return [Array]
     def command_parts
-      # up  - vagrant up
-      # ssh - vagrant ssh
       @command_parts ||= parts
     end
 
+    # Returns command_parts
+    # @return [type] [description]
     def parts
-      if tasks.empty?
-        send(vagrant_command)
-      else
-        # TODO: implement command compose
-      end
+      arr = [send(vagrant_command)]
+      return arr if tasks.empty?
+      ssh_commands = tasks.map { |t| project.task(t) }
+      arr << ssh_exec(ssh_commands.join(' && '))
     end
 
-    def ssh_exec
-      %(#{ssh} -c "cd /vagrant && %{ssh_command}")
+    # Returns pattern of ssh exec command
+    # @return [String]
+    def ssh_exec(ssh_commands)
+      %(#{ssh} -c "cd /vagrant && #{ssh_commands}")
     end
 
     def method_missing(method, *args)
