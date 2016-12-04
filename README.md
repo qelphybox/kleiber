@@ -63,11 +63,11 @@ Sample command struture is `kleiber [vagrant command] <project names> <-c config
     $ kleiber --help # use it first
 
 ## Development
-Recommended to install [Vagrant](https://www.vagrantup.com/).
-`vagrant up && vagrant ssh` - switch on and get access to development vagrant machine.
-`bin/setup` - install dependecies and setup app.
-`bundle exec rspec` - to run tests.
-`bundle exec rake install` - install gem on your local machine.
+Recommended to install [Vagrant](https://www.vagrantup.com/).  
+`vagrant up && vagrant ssh` - switch on and get access to development vagrant machine.  
+`bin/setup` - install dependecies and setup app.  
+`bundle exec rspec` - to run tests.  
+`bundle exec rake install` - install gem on your local machine.  
 
 ## Contributing
 
