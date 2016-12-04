@@ -13,7 +13,7 @@ module Kleiber
     end
 
     def storage_path
-      File.expand_path("#{name.demodulize.underscore}.db", Kleiber.settings.storages_path)
+      File.expand_path("#{name.demodulize.underscore.pluralize}.db", Kleiber.settings.storages_path)
     end
 
     # Class Store provides api to store file db

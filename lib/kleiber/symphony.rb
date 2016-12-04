@@ -10,9 +10,9 @@ module Kleiber
 
     class << self
       def create(name, project_names)
+        # FIXME: make it persists
         current_projects = Kleiber.projects.select { |p| project_names.include?(p.name) }
-        symphony = new(name, current_projects)
-        symphony if symphony.save
+        new(name, current_projects)
       end
 
       def get(id)
@@ -31,10 +31,6 @@ module Kleiber
     def initialize(name, projects)
       @name = name
       @projects = projects
-    end
-
-    def save
-      true
     end
   end
 end
