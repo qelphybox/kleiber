@@ -8,4 +8,10 @@ Dir["#{__dir__}/shared/**/*.rb"].each { |helper| require helper }
 
 RSpec.configure do |config|
   config.include FixturesSpecHelper
+
+  config.before(:all) do
+    Kleiber.configure do |c|
+      c.path = good_config_path
+    end
+  end
 end

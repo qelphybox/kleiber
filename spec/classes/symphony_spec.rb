@@ -1,9 +1,7 @@
 # encoding: utf-8
 
 RSpec.describe Kleiber::Symphony do
-  include_context 'good config'
   context 'class methods' do
-    include_context 'good config'
     context '#create' do
       subject { described_class.create('symphony1', project_names) }
       let(:project_names) { %w(project1 project2) }

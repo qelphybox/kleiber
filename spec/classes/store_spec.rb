@@ -1,6 +1,8 @@
 # encoding: utf-8
 
-RSpec.describe Kleiber::Store do
+require 'kleiber/mixins/storagable'
+
+RSpec.describe Kleiber::Storagable::Store do
   include_context 'test db'
   include DBSpecHelper
   context 'instance methods' do

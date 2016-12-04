@@ -21,3 +21,6 @@
   setup: 'bundle install --jobs 4'
   run: 'bundle exec rails s -p %{port}'
   console: 'bundle exec rails c'
+
+# Defaults to ~/.kleiber/stores
+:storages_path: /path/to/storages

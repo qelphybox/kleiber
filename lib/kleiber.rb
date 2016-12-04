@@ -1,15 +1,16 @@
 # encoding: utf-8
 
 require 'yaml'
+require 'active_support/inflector'
 
 module Kleiber
   ROOT = File.absolute_path("#{__dir__}/..")
   DEFAULT_SETTINGS_PATH = File.expand_path('.projects.yml', ENV['HOME'])
 
-  autoload :Settings, 'kleiber/settings'
-  autoload :Store,    'kleiber/store'
-  autoload :Symphony, 'kleiber/symphony'
-  autoload :Project,  'kleiber/project'
+  autoload :Settings,   'kleiber/settings'
+  autoload :Storagable, 'kleiber/mixins/storagable'
+  autoload :Symphony,   'kleiber/symphony'
+  autoload :Project,    'kleiber/project'
 
   class << self
     def create(name, project_names)

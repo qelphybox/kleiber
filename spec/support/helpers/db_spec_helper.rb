@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'gdbm'
+
 module DBSpecHelper
   def db_read(key)
     GDBM.open(db_path) do |db|

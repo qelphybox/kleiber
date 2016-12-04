@@ -5,12 +5,14 @@ module Kleiber
   # Provides api for control your symphony.
   # @author Bobykin Kirill <qelphybox@gmail.com>
   class Symphony
+    extend Storagable
     attr_reader :projects, :name
 
     class << self
       def create(name, project_names)
         current_projects = Kleiber.projects.select { |p| project_names.include?(p.name) }
-        new(name, current_projects)
+        symphony = new(name, current_projects)
+        symphony if symphony.save
       end
 
       def get(id)
@@ -29,6 +31,10 @@ module Kleiber
     def initialize(name, projects)
       @name = name
       @projects = projects
+    end
+
+    def save
+      true
     end
   end
 end
