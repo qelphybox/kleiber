@@ -12,6 +12,10 @@
 
   :project2:
     :prefix: PROJ2
+    :path: /path/to/project/dir
+    :guest_port: 8000
+    :host_port: 8000
+    :host: 125.12.123.42
 
   :project3:
     :prefix: PROJ3

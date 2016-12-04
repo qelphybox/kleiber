@@ -8,7 +8,7 @@ module Kleiber
     attr_reader :projects
 
     def initialize(projects)
-      @projects = Project.load_by_names(projects)
+      @projects = projects
     end
   end
 end
