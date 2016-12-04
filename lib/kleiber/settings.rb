@@ -5,15 +5,16 @@ module Kleiber
   # @author Кирилл Бобыкин <qelphybox@gmail.com>
   class Settings
     # backporting for old ruby versions
-    REQUIRED_KEYS = %w(prefix path guest_port host_port host).map(&:to_sym)
+    REQUIRED_KEYS = %w(name prefix path guest_port host_port host).map(&:to_sym)
+
+    attr_accessor :path
 
     def initialize(path)
       @path = path
-      raise('Wrong config') unless valid?
     end
 
     # Returns projects settings hash
-    # @return [Hash] projects hash
+    # @return [Array] projects hash
     def projects
       yaml_config[:projects]
     end
@@ -25,7 +26,7 @@ module Kleiber
     end
 
     def valid?
-      yaml_config[:projects].values.all? { |p| (REQUIRED_KEYS - p.keys).empty? }
+      yaml_config[:projects].all? { |p| (REQUIRED_KEYS - p.keys).empty? }
     end
 
     private

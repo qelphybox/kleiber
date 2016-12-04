@@ -1,6 +1,6 @@
 ---
 :projects:
-  :project1:
+  - :name: project1
     :prefix: PROJ1
     :path: /path/to/project/dir
     :guest_port: 8000
@@ -10,7 +10,7 @@
       setup: 'npm i'
       run: 'node start'
 
-  :project2:
+  - :name: project2
     :prefix: PROJ2
     :path: /path/to/project/dir
     :guest_port: 8000

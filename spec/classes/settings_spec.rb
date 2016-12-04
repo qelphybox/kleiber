@@ -12,7 +12,7 @@ RSpec.describe Kleiber::Settings do
 
       context 'bad config' do
         let(:path) { bad_config_path }
-        it { expect { subject }.to raise_error(RuntimeError, 'Wrong config') }
+        it { is_expected.to eq false }
       end
     end
   end
