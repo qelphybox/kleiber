@@ -2,6 +2,6 @@
 
 require 'bundler/setup'
 require 'kleiber'
-require 'kleiber/cli'
+# require 'kleiber/cli'
 
-Kleiber::CLI.start(ARGV)
+# Kleiber::CLI.start(ARGV)

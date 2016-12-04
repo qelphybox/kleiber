@@ -1,6 +1,6 @@
-require 'fileutils'
+# encoding: utf-8
 
 module Kleiber
   ROOT = File.absolute_path("#{__dir__}/..")
-  autoload :CLI, 'kleiber/cli'
+  autoload :Symphony, 'kleiber/symphony'
 end
