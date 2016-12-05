@@ -9,20 +9,30 @@ module Kleiber
     attr_reader :projects, :name
 
     class << self
+      # Creates new symphony
+      # @param [String] name
+      # @param [Array] project_names
+      # @return [Symphony] new symphony
       def create(name, project_names)
-        # FIXME: make it persists
-        current_projects = Kleiber.projects.select { |p| project_names.include?(p.name) }
-        new(name, current_projects)
+
       end
 
+      # Returns stored symphony by id
+      # @param [String] id
+      # @return [Symphony] symphony
       def get(id)
 
       end
 
+      # Returns array with all symphonies, which kleiber knows
+      # @return [Array] symphonies array
       def list
 
       end
 
+      # Deletes symphony by id
+      # @param [String] id
+      # @return [Boolean] result
       def destroy(id)
 
       end

@@ -2,16 +2,16 @@
 
 require 'kleiber/mixins/storagable'
 
-RSpec.describe Kleiber::Storagable::Store do
+RSpec.describe Kleiber::Storagable::Storage do
   include_context 'test db'
   include DBSpecHelper
   context 'instance methods' do
-    subject(:store) { described_class.new(db_path) }
+    subject(:storage) { described_class.new(db_path) }
     let(:key) { 'key' }
     let(:value) { 'value' }
 
     context '#write' do
-      subject { store.write(key, value) }
+      subject { storage.write(key, value) }
       specify 'persists to db' do
         subject
         expect(db_read(key)).to eq(value)
@@ -20,7 +20,7 @@ RSpec.describe Kleiber::Storagable::Store do
 
     context '#read' do
       before { db_write(key, value) }
-      subject { store.read(key) }
+      subject { storage.read(key) }
       it { is_expected.to eq(value) }
     end
   end

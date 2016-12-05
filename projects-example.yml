@@ -22,5 +22,5 @@
   run: 'bundle exec rails s -p %{port}'
   console: 'bundle exec rails c'
 
-# Defaults to ~/.kleiber/stores
+# Defaults to ~/.kleiber/storages
 :storages_path: /path/to/storages

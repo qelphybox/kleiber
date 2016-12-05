@@ -3,35 +3,35 @@
 require 'gdbm'
 
 module Kleiber
-  # Module Storagable provides a store method
+  # Module Storagable provides a storage method
   # @author Кирилл Бобыкин <qelphybox@gmail.com>
   module Storagable
-    # Object for operations with store
-    # @return [Store] store object
-    def store
-      @store ||= Store.new(storage_path)
+    # Object for operations with storage
+    # @return [Storage] storage object
+    def storage
+      @storage ||= Storage.new(storage_path)
     end
 
     def storage_path
       File.expand_path("#{name.demodulize.underscore.pluralize}.db", Kleiber.settings.storages_path)
     end
 
-    # Class Store provides api to store file db
+    # Class Storage provides api to storage file db
     # @author Кирилл Бобыкин <qelphybox@gmail.com>
-    class Store
+    class Storage
       attr_reader :path
       def initialize(path)
         @path = path
       end
 
-      # Writes to store
+      # Writes to storage
       # @param [String] key
       # @param [String] value
       def write(key, value)
         transact { |db| db[key] = value }
       end
 
-      # Reads from store
+      # Reads from storage
       # @param [String] key
       def read(key)
         transact { |db| db[key] }

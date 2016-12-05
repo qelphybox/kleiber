@@ -8,7 +8,7 @@ module Kleiber
   class Settings
     # backporting for old ruby versions
     REQUIRED_KEYS = %w(name prefix path guest_port host_port host).map(&:to_sym)
-    DEFAULT_STORAGES_PATH = File.expand_path('.kleiber/stores', ENV['HOME'])
+    DEFAULT_STORAGES_PATH = File.expand_path('.kleiber/storages', ENV['HOME'])
 
     attr_accessor :path
 
