@@ -26,11 +26,6 @@ RSpec.describe Kleiber::Settings do
       it { is_expected.to be_an_instance_of(Hash) }
     end
 
-    context '#storages_path' do
-      subject { settings.storages_path }
-      it { is_expected.to be_an_instance_of(String) }
-    end
-
     context '#terminal' do
       subject { settings.terminal }
       it { is_expected.to be_an_instance_of(Hash) }

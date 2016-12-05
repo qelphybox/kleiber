@@ -8,7 +8,6 @@ module Kleiber
   class Settings
     # backporting for old ruby versions
     REQUIRED_KEYS = %w(name prefix path guest_port host_port host).map(&:to_sym)
-    DEFAULT_STORAGES_PATH = File.expand_path('.kleiber/storages', ENV['HOME'])
 
     attr_accessor :path
 
@@ -28,12 +27,6 @@ module Kleiber
       config[:tasks]
     end
 
-    # Returns storages path value
-    # @return [String] storages path
-    def storages_path
-      config[:storages_path] || default_storages_path
-    end
-
     # Returns terminal settings
     # @return [Hash]
     def terminal
@@ -47,10 +40,6 @@ module Kleiber
     end
 
     private
-
-    def default_storages_path
-      FileUtils.mkdir_p(DEFAULT_STORAGES_PATH).first
-    end
 
     def config
       YAML.load_file(@path)

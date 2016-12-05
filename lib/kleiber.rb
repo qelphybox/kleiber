@@ -1,14 +1,12 @@
 # encoding: utf-8
 
 require 'yaml'
-require 'active_support/inflector'
 
 module Kleiber
   ROOT = File.absolute_path("#{__dir__}/..")
   DEFAULT_SETTINGS_PATH = File.expand_path('.projects.yml', ENV['HOME'])
 
   autoload :Settings,   'kleiber/settings'
-  autoload :Storagable, 'kleiber/mixins/storagable'
   autoload :Symphony,   'kleiber/symphony'
   autoload :Project,    'kleiber/project'
   autoload :Terminal,   'kleiber/terminal'
