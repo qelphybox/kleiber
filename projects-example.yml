@@ -22,6 +22,10 @@
   run: 'bundle exec rails s -p %{port}'
   console: 'bundle exec rails c'
 
+:symphonies:
+  symphony1:
+    :projects: ['project1', 'project2']
+
 :terminal:
   :exec: 'gnome-terminal'
   :new_tab: '--tab'

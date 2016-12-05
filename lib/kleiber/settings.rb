@@ -33,13 +33,32 @@ module Kleiber
       config[:terminal]
     end
 
+    def symphonies
+      config[:symphonies]
+    end
+
     # Validates settings
     # @return [Boolean] validation result
     def valid?
-      config[:projects].all? { |p| (REQUIRED_KEYS - p.keys).empty? }
+      private_methods.map do |m|
+        send(m) if m.to_s.start_with?('validate_')
+      end.compact.all?
     end
 
     private
+
+    def validate_symphonies
+      symphonies && symphonies.is_a?(Hash) &&
+        symphonies.values.all? do |symp|
+          symp.key?(:projects) && symp[:projects].is_a?(Array) &&
+            symp[:projects].all? { |p| projects.map { |e| e[:name] }.include?(p) }
+        end
+    end
+
+    def validate_projects
+      projects && projects.is_a?(Array) &&
+        projects.all? { |p| (REQUIRED_KEYS - p.keys).empty? }
+    end
 
     def config
       YAML.load_file(@path)
