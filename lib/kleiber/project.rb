@@ -14,5 +14,9 @@ module Kleiber
       @host       = settings[:host]
       @tasks      = settings[:tasks]
     end
+
+    def up
+
+    end
   end
 end

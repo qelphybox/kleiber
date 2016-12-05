@@ -17,10 +17,10 @@ module Kleiber
 
       end
 
-      # Returns stored symphony by id
-      # @param [String] id
+      # Returns stored symphony by name
+      # @param [String] name
       # @return [Symphony] symphony
-      def get(id)
+      def get(name)
 
       end
 
@@ -30,10 +30,10 @@ module Kleiber
 
       end
 
-      # Deletes symphony by id
-      # @param [String] id
+      # Deletes symphony by name
+      # @param [String] name
       # @return [Boolean] result
-      def destroy(id)
+      def destroy(name)
 
       end
     end
@@ -41,6 +41,16 @@ module Kleiber
     def initialize(name, projects)
       @name = name
       @projects = projects
+    end
+
+    # Calls up for symphony projects
+    # @param [Array] *only only this project names
+    def up(*only)
+      select_projects(only).each(&:up)
+    end
+
+    def select_projects(only)
+      only.empty? ? projects : projects.select { |p| only.include?(p.name) }
     end
   end
 end

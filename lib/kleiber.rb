@@ -11,12 +11,9 @@ module Kleiber
   autoload :Storagable, 'kleiber/mixins/storagable'
   autoload :Symphony,   'kleiber/symphony'
   autoload :Project,    'kleiber/project'
+  autoload :Terminal,   'kleiber/terminal'
 
   class << self
-    def create(name, project_names)
-
-    end
-
     # Returns projects which kleiber can operate
     # @return [Array] projects
     def projects
@@ -35,6 +32,12 @@ module Kleiber
     # @return [Settings] settings
     def settings
       @settings ||= Settings.new(DEFAULT_SETTINGS_PATH)
+    end
+
+    # Returns current terminal object
+    # @return [Terminal] current terminal
+    def terminal
+      @terminal ||= Terminal.new(settings.terminal)
     end
   end
 end

@@ -20,4 +20,9 @@ RSpec.describe Kleiber do
     subject { Kleiber.settings }
     it { is_expected.to be_an_instance_of(Kleiber::Settings) }
   end
+
+  context '#terminal' do
+    subject { Kleiber.terminal }
+    it { is_expected.to be_an_instance_of(Kleiber::Terminal) }
+  end
 end

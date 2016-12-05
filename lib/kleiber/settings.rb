@@ -19,25 +19,31 @@ module Kleiber
     # Returns projects settings hash
     # @return [Array] projects hash
     def projects
-      yaml_config[:projects]
+      config[:projects]
     end
 
     # Returns tasks settings hash
     # @return [Hash] tasks hash
     def tasks
-      yaml_config[:tasks]
+      config[:tasks]
     end
 
     # Returns storages path value
     # @return [String] storages path
     def storages_path
-      yaml_config[:storages_path] || default_storages_path
+      config[:storages_path] || default_storages_path
+    end
+
+    # Returns terminal settings
+    # @return [Hash]
+    def terminal
+      config[:terminal]
     end
 
     # Validates settings
     # @return [Boolean] validation result
     def valid?
-      yaml_config[:projects].all? { |p| (REQUIRED_KEYS - p.keys).empty? }
+      config[:projects].all? { |p| (REQUIRED_KEYS - p.keys).empty? }
     end
 
     private
@@ -46,7 +52,7 @@ module Kleiber
       FileUtils.mkdir_p(DEFAULT_STORAGES_PATH).first
     end
 
-    def yaml_config
+    def config
       YAML.load_file(@path)
     end
   end

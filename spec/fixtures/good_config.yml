@@ -21,3 +21,12 @@
   setup: 'bundle install --jobs 4'
   run: 'bundle exec rails s -p %{port}'
   console: 'bundle exec rails c'
+
+# Defaults to ~/.kleiber/storages
+:storages_path: /path/to/storages
+
+:terminal:
+  :exec: 'gnome-terminal'
+  :options:
+    :new_tab: '--tab'
+    :exec_command: "-e '%{tab_command}'"

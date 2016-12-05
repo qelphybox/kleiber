@@ -24,3 +24,8 @@
 
 # Defaults to ~/.kleiber/storages
 :storages_path: /path/to/storages
+
+:terminal:
+  :exec: 'gnome-terminal'
+  :new_tab: '--tab'
+  :exec_command: "-e '%{tab_command}'"
