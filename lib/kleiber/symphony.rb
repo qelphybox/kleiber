@@ -8,7 +8,7 @@ module Kleiber
     attr_reader :projects, :name
 
     def initialize(name, projects)
-      @name = name
+      @name     = name
       @projects = projects
     end
 
@@ -18,6 +18,9 @@ module Kleiber
       select_projects(only).each(&:up)
     end
 
+    # Selects project from projects
+    # @param only [Array] projects for filter
+    # @return [Array] result array
     def select_projects(only)
       only.empty? ? projects : projects.select { |p| only.include?(p.name) }
     end

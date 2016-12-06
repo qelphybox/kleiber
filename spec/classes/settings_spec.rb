@@ -30,5 +30,10 @@ RSpec.describe Kleiber::Settings do
       subject { settings.terminal }
       it { is_expected.to be_an_instance_of(Hash) }
     end
+
+    context '#symphonies' do
+      subject { settings.symphonies }
+      it { is_expected.to be_an_instance_of(Hash) }
+    end
   end
 end

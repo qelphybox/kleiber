@@ -33,6 +33,8 @@ module Kleiber
       config[:terminal]
     end
 
+    # Returns symphonies settings
+    # @return [Hash]
     def symphonies
       config[:symphonies]
     end
