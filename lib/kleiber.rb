@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-require 'yaml'
-
 module Kleiber
   ROOT = File.absolute_path("#{__dir__}/..")
   DEFAULT_SETTINGS_PATH = File.expand_path('.projects.yml', ENV['HOME'])
@@ -10,8 +8,20 @@ module Kleiber
   autoload :Symphony,   'kleiber/symphony'
   autoload :Project,    'kleiber/project'
   autoload :Terminal,   'kleiber/terminal'
+  autoload :Commands,   'kleiber/commands'
+  autoload :Performer,  'kleiber/performer'
+  autoload :CLI,        'kleiber/cli'
 
   class << self
+    # Returns performer with defined options
+    # @param [String] symphony_name name of symphony to perform
+    # @param [Array] projects list of projects names to run only
+    # @param [Hash] options options of perfomance
+    # @return [Performer] return performer object
+    def perform(symphony_name, projects, options)
+      Performer.new(symphonies[symphony_name], projects, options)
+    end
+
     # Returns projects which kleiber can operate
     # @return [Array] projects
     def projects
@@ -21,7 +31,7 @@ module Kleiber
     end
 
     # Returns symphonies which kleiber can control
-    # @return [Array] symphonies
+    # @return [Hash] symphonies
     def symphonies
       settings.symphonies.map do |symphony_name, symphony_settings|
         symp_projects = projects.select { |p| symphony_settings[:projects].include?(p.name) }

@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'fileutils'
+require 'yaml'
 
 module Kleiber
   # Provides access to settings of library
