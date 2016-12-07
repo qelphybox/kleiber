@@ -4,10 +4,25 @@ module Kleiber
   # Provides api for symphony perphomance
   # @author Кирилл Бобыкин <qelphybox@gmail.com>
   class Performer
-    def initialize(symphony, projects, options)
+    attr_reader :symphony, :projects, :tasks, :stack
+    def initialize(symphony, projects, tasks)
       @symphony = symphony
       @projects = projects
-      @options  = options
+      @tasks  = tasks
+      @stack = []
+    end
+
+    def up
+      symphony.
+    end
+
+    private
+
+    def handle_tasks!
+      return unless tasks
+      tasks.split(':').each do |variable|
+
+      end
     end
   end
 end
