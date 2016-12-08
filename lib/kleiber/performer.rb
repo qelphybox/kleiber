@@ -8,21 +8,16 @@ module Kleiber
     def initialize(symphony, projects, tasks)
       @symphony = symphony
       @projects = projects
-      @tasks  = tasks
-      @stack = []
+      @tasks    = tasks
+      @stack    = []
     end
 
     def up
-      symphony.
+      symphony.up(projects, tasks)
     end
 
-    private
-
-    def handle_tasks!
-      return unless tasks
-      tasks.split(':').each do |variable|
-
-      end
+    def tasks
+      @tasks ? @tasks.split(':') : []
     end
   end
 end

@@ -13,9 +13,10 @@ module Kleiber
     end
 
     # Calls up for symphony projects
-    # @param [Array] *only only this project names
-    def up(*only)
-      select_projects(only).each(&:up)
+    # @param [Array] only only this project names
+    # @param [Array] tasks
+    def up(only, tasks)
+      select_projects(only).each { |p| p.up(tasks) }
     end
 
     # Selects project from projects
