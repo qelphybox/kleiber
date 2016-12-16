@@ -35,7 +35,7 @@ module Kleiber
     def symphonies
       settings.symphonies.map do |symphony_name, symphony_settings|
         symp_projects = projects.select { |p| symphony_settings[:projects].include?(p.name) }
-        Symphony.new(symphony_name, symp_projects, settings.tasks)
+        Symphony.new(symphony_name, symp_projects)
       end
     end
 
