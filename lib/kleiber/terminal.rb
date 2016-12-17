@@ -10,5 +10,9 @@ module Kleiber
       @title        = settings[:title]
       @exec_command = settings[:title]
     end
+
+    def in_new_tab(line)
+      p line
+    end
   end
 end

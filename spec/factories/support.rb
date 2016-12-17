@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :hash, class: 'Hash' do
     skip_create
-    initialize_with { attributes }
+    initialize_with { attributes.stringify_keys! }
   end
 
   factory :tasks, parent: :hash do

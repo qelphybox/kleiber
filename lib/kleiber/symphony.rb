@@ -57,7 +57,7 @@ module Kleiber
     # @return [Hash] env variables hash
     def environment
       projects.reduce(env) do |result, project|
-        result.merge(project.env)
+        result.merge(project.environment)
       end
     end
   end

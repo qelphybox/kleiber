@@ -5,7 +5,7 @@ require 'cocaine'
 module Kleiber
   module Commands
     def vagrant
-      Cocaine::CommandLine.new('unset RUBYLIB;', '/usr/bin/vagrant')
+      Cocaine::CommandLine.new('/usr/bin/vagrant')
     end
 
     # Returns vagrant up command line
@@ -16,7 +16,7 @@ module Kleiber
 
     # Returns vagrant ssh command line
     # @return [Cocaine::CommandLine] vagrant ssh command
-    def vagrant_ssh(_command)
+    def vagrant_ssh
       Cocaine::CommandLine.new(vagrant.command, 'ssh')
     end
 
