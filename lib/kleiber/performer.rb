@@ -5,10 +5,10 @@ module Kleiber
   # @author Кирилл Бобыкин <qelphybox@gmail.com>
   class Performer
     attr_reader :symphony, :projects
-    def initialize(symphony, projects, tasks)
+    def initialize(symphony, projects, options)
       @symphony = symphony
       @projects = projects
-      @tasks    = tasks
+      @tasks    = options[:tasks]
     end
 
     # Generates vagrant api methods
@@ -16,7 +16,7 @@ module Kleiber
     #   def up
     #     symphony.up(projects, task_names)
     #   end
-    %i(up ssh halt).each do |sym|
+    %i(up ssh halt reload).each do |sym|
       define_method sym do
         symphony.send(sym, projects, tasks)
       end
@@ -31,7 +31,8 @@ module Kleiber
     # Returns tasks to run with command
     # @return [Hash] tasks to run
     def tasks
-      Kleiber.settings.tasks.slice(*task_names)
+      all_tasks = Kleiber.settings.tasks
+      tasks.each_with_object({}) { |k, hash| hash[k] = all_tasks[k] if all_tasks.key?(k) }
     end
   end
 end

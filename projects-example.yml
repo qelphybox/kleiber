@@ -25,6 +25,11 @@
 :symphonies:
   symphony1:
     :projects: ['project1', 'project2']
+    :tasks:
+      setup: 'bundle'
+      run: 'rails c'
+    :env:
+      OTHER_HOST: 127.0.0.1
 
 :terminal:
   :exec: 'gnome-terminal'

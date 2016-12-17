@@ -20,9 +20,11 @@ module Kleiber
     #   def up(only, tasks)
     #     select_projects(only).each { |p| p.up(tasks) }
     #   end
-    %i(up ssh halt).each do |sym|
+    %i(up ssh halt reload).each do |sym|
       define_method sym do |only, tasks_to_run|
-        select_projects(only).each { |p| p.send(sym, task_list(tasks_to_run)) }
+        select_projects(only).each do |p|
+          p.send(sym, tasks: task_list(tasks_to_run), env: environment)
+        end
       end
     end
 
@@ -33,13 +35,19 @@ module Kleiber
       only.empty? ? projects : projects.select { |p| only.include?(p.name) }
     end
 
-    # Defines symphony task values, if it exists
+    # Defines symphony task values and environment varaibles, if it exists
     # @param [Hash] list list of tasks to run
     # @return [Hash] task list with symphony values
     def task_list(list)
       list.each_with_object({}) do |(name, task), hash|
         hash[name] = tasks[name] || task
       end
+    end
+
+    # Returns a string with definition all env variables of this symphony
+    # @return [String] env variables string
+    def environment
+      projects.map(&:environment).join(' ')
     end
   end
 end

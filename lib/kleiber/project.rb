@@ -16,9 +16,23 @@ module Kleiber
       @tasks      = settings[:tasks]
     end
 
-    # Returns tasks of this project
-    # @return [Hash]
-    def tasks
+    %i(up ssh halt reload).each do |sym|
+      define_method sym do |tasks_to_run|
+        Kleiber.terminal.in_new_tab(command_with(__method__, tasks_to_run))
+      end
+    end
+
+    # Returns command with option to run
+    # @param [Hash] task_list task list to run with command
+    # @return [String] command line
+    def command_with(command, task_list)
+      send("handle_#{command}", task_list)
+    end
+
+    # Returns environment variables of this project
+    # @return [<type>] <description>
+    def environment
+
     end
 
     # Provides block to operate at home directory, after block it turns back
@@ -27,6 +41,15 @@ module Kleiber
       Dir.chdir(path)
       yield
       Dir.chdir(pwd)
+    end
+
+    private
+
+    # Returns vagrant command
+    # @param [Symbol, String] command vagrant command
+    # @return [String] command line
+    def vagrant_(command)
+      send("vagrant_#{command}".to_sym).command
     end
   end
 end

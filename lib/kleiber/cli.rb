@@ -9,7 +9,7 @@ module Kleiber
     desc 'up SYMPHONY_NAME [PROJECTS]', 'runs vagrant up for projects'
     method_option :tasks, type: :string, aliases: '-t'
     def up(symphony_name, *projects)
-      # Kleiber.perform(symphony_name, projects, options).up
+      Kleiber.perform(symphony_name, projects, options).up
     end
   end
 end
