@@ -68,7 +68,6 @@ module Kleiber
     private
 
     def handle_up(params)
-      # byebug
       line = [vagrant_(:up)]
       line << ssh_exec_line(params) unless params[:tasks].empty?
       line.join(' && ')
