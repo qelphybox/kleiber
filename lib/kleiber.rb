@@ -33,9 +33,9 @@ module Kleiber
     # Returns symphonies which kleiber can control
     # @return [Hash] symphonies
     def symphonies
-      settings.symphonies.map do |symphony_name, symphony_settings|
+      settings.symphonies.each_with_object({}) do |(symphony_name, symphony_settings), result|
         symp_projects = projects.select { |p| symphony_settings[:projects].include?(p.name) }
-        Symphony.new(symphony_name, symp_projects)
+        result[symphony_name] = Symphony.new(symphony_name, symp_projects)
       end
     end
 

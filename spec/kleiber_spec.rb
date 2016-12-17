@@ -25,4 +25,17 @@ RSpec.describe Kleiber do
     subject { Kleiber.terminal }
     it { is_expected.to be_an_instance_of(Kleiber::Terminal) }
   end
+
+  context '#symphonies' do
+    subject { Kleiber.symphonies }
+    it { is_expected.to be_an_instance_of(Hash) }
+  end
+
+  context '#perform' do
+    let(:symphony_name) { 'symphony1' }
+    let(:projects_only) { [] }
+    let(:options) { {} }
+    subject { Kleiber.perform(symphony_name, projects_only, options) }
+    it { is_expected.to be_an_instance_of(Kleiber::Performer) }
+  end
 end
