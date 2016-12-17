@@ -9,6 +9,8 @@
     :tasks:
       setup: 'npm i'
       run: 'node start'
+    :env:
+      OTHER_HOST: 123.123.123.123
 
   - :name: project2
     :prefix: PROJ2

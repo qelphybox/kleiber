@@ -5,12 +5,21 @@ module Kleiber
   # Provides api for control your symphony.
   # @author Bobykin Kirill <qelphybox@gmail.com>
   class Symphony
-    attr_reader :projects, :name, :tasks
+    attr_reader :projects, :name
 
-    def initialize(name, projects, tasks)
+    def initialize(name, projects, options)
       @name     = name
       @projects = projects
-      @tasks    = tasks
+      @tasks    = options[:tasks]
+      @env      = options[:env]
+    end
+
+    def tasks
+      @tasks || {}
+    end
+
+    def env
+      @env || {}
     end
 
     # Generates vagrant api methods
@@ -18,7 +27,7 @@ module Kleiber
     # @param [Array] tasks
     # @example
     #   def up(only, tasks)
-    #     select_projects(only).each { |p| p.up(tasks) }
+    #     select_projects(only).each { |p| p.up(args) }
     #   end
     %i(up ssh halt reload).each do |sym|
       define_method sym do |only, tasks_to_run|
@@ -44,10 +53,12 @@ module Kleiber
       end
     end
 
-    # Returns a string with definition all env variables of this symphony
-    # @return [String] env variables string
+    # Returns hash with definition all env variables of this symphony
+    # @return [Hash] env variables hash
     def environment
-      projects.map(&:environment).join(' ')
+      projects.reduce(env) do |result, project|
+        result.merge(project.env)
+      end
     end
   end
 end

@@ -32,7 +32,7 @@ module Kleiber
     # @return [Hash] tasks to run
     def tasks
       all_tasks = Kleiber.settings.tasks
-      tasks.each_with_object({}) { |k, hash| hash[k] = all_tasks[k] if all_tasks.key?(k) }
+      task_names.each_with_object({}) { |t, hash| hash[t] = all_tasks[t] if all_tasks.key?(t) }
     end
   end
 end

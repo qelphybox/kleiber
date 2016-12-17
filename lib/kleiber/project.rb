@@ -5,7 +5,7 @@ module Kleiber
   # @author Кирилл Бобыкин <qelphybox@gmail.com>
   class Project
     include Commands
-    attr_reader :name, :prefix, :path, :guest_port, :host_port, :host
+    attr_reader :name, :prefix, :path, :guest_port, :host_port, :host, :env
     def initialize(settings)
       @name       = settings[:name]
       @prefix     = settings[:prefix]
@@ -14,6 +14,7 @@ module Kleiber
       @host_port  = settings[:host_port]
       @host       = settings[:host]
       @tasks      = settings[:tasks]
+      @env        = settings[:env]
     end
 
     %i(up ssh halt reload).each do |sym|
@@ -27,12 +28,6 @@ module Kleiber
     # @return [String] command line
     def command_with(command, task_list)
       send("handle_#{command}", task_list)
-    end
-
-    # Returns environment variables of this project
-    # @return [<type>] <description>
-    def environment
-
     end
 
     # Provides block to operate at home directory, after block it turns back

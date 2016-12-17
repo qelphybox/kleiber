@@ -25,6 +25,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'fakefs', '~> 0.8.1'
   spec.add_development_dependency 'yard'
+  spec.add_development_dependency 'factory_girl'
+  spec.add_development_dependency 'byebug'
 
   spec.add_dependency 'thor'
   spec.add_dependency 'cocaine'

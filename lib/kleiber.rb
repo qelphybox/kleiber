@@ -35,7 +35,7 @@ module Kleiber
     def symphonies
       settings.symphonies.each_with_object({}) do |(symphony_name, symphony_settings), result|
         symp_projects = projects.select { |p| symphony_settings[:projects].include?(p.name) }
-        result[symphony_name] = Symphony.new(symphony_name, symp_projects, symphony_settings[:tasks])
+        result[symphony_name] = Symphony.new(symphony_name, symp_projects, symphony_settings)
       end
     end
 
