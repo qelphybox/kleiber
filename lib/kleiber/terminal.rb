@@ -14,15 +14,27 @@ module Kleiber
 
     # Runs command line in new tab
     # @param [String] line line to execute
-    def in_new_tab(line)
-      new_tab_line_with(line).run
+    def execute(scriptfile)
+      puts command_line.command(script: scriptfile.path)
+      command_line.run(script: scriptfile.path)
     end
 
-    def new_tab_line_with(line, title = nil)
-      exec_line = [exec, new_tab]
-      exec_line << title if title
-      exec_line << (exec_command % { tab_command: line })
-      Cocaine::CommandLine.new(exec_line.join(' '))
+    private
+
+    # Returns CommandLine for execution
+    # @param [File] scriptfile file with script to execute in machine
+    # @return [Cocaine::CommandLine] new command line to execute
+    def command_line
+      Cocaine::CommandLine.new(exec, options)
+    end
+
+    # Return options line
+    # @return [String] terminal options line
+    def options
+      options_line = ['-e :script']
+      options_line.unshift << title if title
+      options_line.unshift << new_tab if new_tab
+      options_line.join(' ')
     end
   end
 end

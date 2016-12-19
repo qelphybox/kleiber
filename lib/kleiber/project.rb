@@ -54,18 +54,26 @@ module Kleiber
     # Executes command in new tab
     # @param [String] command command line to run
     def execute(command)
-      Kleiber.terminal.in_new_tab(command)
+      with_tmpfile_script(command) do |file|
+        Kleiber.terminal.execute(file)
+      end
     end
 
-    # Provides block to operate at home directory, after block it turns back
-    def in_directory
-      pwd = Dir.getwd
-      Dir.chdir(path)
-      yield
-      Dir.chdir(pwd)
+    def with_tmpfile_script(command)
+      Tempfile.create([name, '.sh'], '/tmp') do |file|
+        file.chmod(0755)
+        file.write(scriptify(command))
+        puts scriptify(command)
+        file.close
+        yield file
+      end
     end
 
     private
+
+    def scriptify(command)
+      ['#!/bin/bash', 'unset RUBYLIB', "cd #{path}", command].join("\n")
+    end
 
     def handle_up(params)
       line = [vagrant_(:up)]
@@ -74,7 +82,7 @@ module Kleiber
     end
 
     def ssh_exec_line(params)
-      "#{vagrant_(:ssh)} -c '#{apply_env_line(params[:env])} #{tasks_line(params[:tasks])}'"
+      "#{vagrant_(:ssh)} -c '#{apply_env_line(params[:env])} cd /vagrant && #{tasks_line(params[:tasks])}'"
     end
 
     def tasks_line(tasks_to_run)
