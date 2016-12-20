@@ -32,8 +32,8 @@ module Kleiber
     # @return [String] terminal options line
     def options
       options_line = ['-e :script']
-      options_line.unshift << title if title
-      options_line.unshift << new_tab if new_tab
+      options_line.unshift(title) if title
+      options_line.unshift(new_tab) if new_tab
       options_line.join(' ')
     end
   end

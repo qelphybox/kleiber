@@ -40,7 +40,7 @@ module Kleiber
 
     %i(up ssh halt reload).each do |sym|
       define_method sym do |params|
-        execute(command_with(__method__, params))
+        terminal_execute(command_with(__method__, params))
       end
     end
 
@@ -48,58 +48,7 @@ module Kleiber
     # @param [Hash] params params need run with
     # @return [String] command line
     def command_with(command, params)
-      send("handle_#{command}", params)
-    end
-
-    # Executes command in new tab
-    # @param [String] command command line to run
-    def execute(command)
-      with_tmpfile_script(command) do |file|
-        Kleiber.terminal.execute(file)
-      end
-    end
-
-    def with_tmpfile_script(command)
-      Tempfile.create([name, '.sh'], '/tmp') do |file|
-        file.chmod(0755)
-        file.write(scriptify(command))
-        puts scriptify(command)
-        file.close
-        yield file
-      end
-    end
-
-    private
-
-    def scriptify(command)
-      ['#!/bin/bash', 'unset RUBYLIB', "cd #{path}", command].join("\n")
-    end
-
-    def handle_up(params)
-      line = [vagrant_(:up)]
-      line << ssh_exec_line(params) unless params[:tasks].empty?
-      line.join(' && ')
-    end
-
-    def ssh_exec_line(params)
-      "#{vagrant_(:ssh)} -c '#{apply_env_line(params[:env])} cd /vagrant && #{tasks_line(params[:tasks])}'"
-    end
-
-    def tasks_line(tasks_to_run)
-      tasks_to_run.reduce({}) do |result, (key, value)|
-        result.merge(key => tasks[key] || value)
-      end.values.join(' && ')
-    end
-
-    def apply_env_line(env_to_app = nil)
-      env_to_app.map { |e| e.join('=') }.join(' ')
-    end
-
-    # Returns vagrant command
-    # @param [Symbol, String] command vagrant command
-    # @return [String] command line
-    def vagrant_(command)
-      send("vagrant_#{command}".to_sym).command
+      ["cd #{path}", send("handle_#{command}", params)].join(' && ')
     end
   end
 end
