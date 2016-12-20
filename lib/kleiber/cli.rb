@@ -11,5 +11,11 @@ module Kleiber
     def up(symphony_name, *projects)
       Kleiber.perform(symphony_name, projects, options).up
     end
+
+    desc 'ssh SYMPHONY_NAME [PROJECTS]', 'runs vagrant ssh for projects'
+    method_option :tasks, type: :string, aliases: '-t'
+    def ssh(symphony_name, *projects)
+      Kleiber.perform(symphony_name, projects, options).ssh
+    end
   end
 end

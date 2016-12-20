@@ -68,20 +68,26 @@ module Kleiber
     # Returns command line for `vagrant up` command.
     # Evaluates tasks executions line by taken parameters
     # @param [Hash] params params hash with values to execute with
-    # @return [String] <description>
+    # @return [String] line for vagrant up execution
     def handle_up(params)
       line = [vagrant_(:up)]
-      line << ssh_exec_line(params) unless params[:tasks].empty?
+      line << handle_ssh(params) unless params[:tasks].empty?
       line.join(' && ')
     end
 
-    # Returns commandline which executes tasks in vagrant
+    def handle_ssh(params)
+      line = [vagrant_(:ssh)]
+      line << ssh_exec_line(params) unless params[:tasks].empty?
+      line.join(' ')
+    end
+
+    # Returns option which executes tasks in vagrant
     # @example
-    #   "vargrant ssh -c 'FIRST_HOST=192.168.22.20 cd /vagrant && bundle exec rails server'"
+    #   "-c 'FIRST_HOST=192.168.22.20 cd /vagrant && bundle exec rails server'"
     # @param [Hash] params params hash with values to execute with
-    # @return [String] commandline
+    # @return [String] option
     def ssh_exec_line(params)
-      Cocaine::CommandLine.new(vagrant_(:ssh), '-c :in_machine').command(in_machine: in_machine(params))
+      Cocaine::CommandLine.new('', '-c :in_machine').command(in_machine: in_machine(params))
     end
 
     # Returns commandline need to execute in vagrant machine.
