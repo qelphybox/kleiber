@@ -9,6 +9,8 @@
     :tasks:
       setup: 'npm i'
       run: 'node start'
+    :env:
+      ANOTHERONE_HOST: 192.168.33.33
 
   - :name: project2
     :prefix: PROJ2
@@ -34,4 +36,4 @@
 :terminal:
   :exec: 'gnome-terminal'
   :new_tab: '--tab'
-  :exec_command: "-e '%{tab_command}'"
+  :exec_command: '-e'
