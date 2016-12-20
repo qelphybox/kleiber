@@ -20,6 +20,12 @@ module Kleiber
       Cocaine::CommandLine.new(vagrant.command, 'ssh')
     end
 
+    # Returns vagrant reload command line
+    # @return [Cocaine::CommandLine] vagrant reload command
+    def vagrant_reload
+      Cocaine::CommandLine.new(vagrant.command, 'reload')
+    end
+
     # Returns vagrant halt command line
     # @return [Cocaine::CommandLine] vagrant halt command
     def vagrant_halt
@@ -75,10 +81,31 @@ module Kleiber
       line.join(' && ')
     end
 
+    # Returns command line for `vagrant ssh` command.
+    # Evaluates tasks executions line by taken parameters
+    # @param [Hash] params params hash with values to execute with
+    # @return [String] line for vagrant ssh execution
     def handle_ssh(params)
       line = [vagrant_(:ssh)]
       line << ssh_exec_line(params) unless params[:tasks].empty?
       line.join(' ')
+    end
+
+    # Returns command line for `vagrant reload` command.
+    # Evaluates tasks executions line by taken parameters
+    # @param [Hash] params params hash with values to execute with
+    # @return [String] line for vagrant reload execution
+    def handle_reload(params)
+      line = [vagrant_(:reload)]
+      line << handle_ssh(params) unless params[:tasks].empty?
+      line.join(' && ')
+    end
+
+    # Returns command line for `vagrant halt` command.
+    # @param [Hash] _params this handler doesn't use params
+    # @return [String] line for vagrant halt execution
+    def handle_halt(_params)
+      vagrant_(:halt)
     end
 
     # Returns option which executes tasks in vagrant

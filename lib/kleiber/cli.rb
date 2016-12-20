@@ -17,5 +17,16 @@ module Kleiber
     def ssh(symphony_name, *projects)
       Kleiber.perform(symphony_name, projects, options).ssh
     end
+
+    desc 'reload SYMPHONY_NAME [PROJECTS]', 'runs vagrant reload for projects'
+    method_option :tasks, type: :string, aliases: '-t'
+    def reload(symphony_name, *projects)
+      Kleiber.perform(symphony_name, projects, options).reload
+    end
+
+    desc 'halt SYMPHONY_NAME [PROJECTS]', 'runs vagrant halt for projects'
+    def halt(symphony_name, *projects)
+      Kleiber.perform(symphony_name, projects, options).halt
+    end
   end
 end
