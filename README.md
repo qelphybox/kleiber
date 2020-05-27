@@ -1,6 +1,7 @@
+### Project is dead, if you want to maintain it, let me know.
+
 # Kleiber
 Manage your development enviroments faster!
-Project is REDESIGNING NOW! 
 
 ![Carlos Kleiber](http://glasove.com/images/crops/32544_IAiSTZMEfO1QnQHfvwvghswY229lKS-560x315-trim%280,0,950,533%29.jpg)
 
